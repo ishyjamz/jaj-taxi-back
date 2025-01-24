@@ -58,6 +58,10 @@ AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", false);
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseSwagger();
+app.UseSwaggerUI();
+
+app.UseRouting();
 
 app.MapControllers();
 
