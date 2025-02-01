@@ -1,50 +1,52 @@
-using jaj_taxi_back.Models.Dtos;
 using jaj_taxi_back.Models.Entities;
-using Microsoft.EntityFrameworkCore;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace jaj_taxi_back.Services;
 
 public class BookingService : IBookingService
 {
-    private readonly TaxiBookingDbContext _dbContext;
     private readonly ILogger<BookingService> _logger;
+    private readonly IMongoCollection<Booking> _bookings;
+    private readonly IMongoCollection<AirportBooking> _airportBookings;
 
-    public BookingService(TaxiBookingDbContext dbContext, ILogger<BookingService> logger)
+    public BookingService(IMongoDatabase database, ILogger<BookingService> logger)
     {
-        _dbContext = dbContext;
+        _bookings = database.GetCollection<Booking>("Bookings");
+        _airportBookings = database.GetCollection<AirportBooking>("AirportBookings");
         _logger = logger;
     }
 
     public async Task<ICollection<Booking>> GetBookingsAsync()
     {
         _logger.LogInformation("Fetching all bookings.");
-        return await _dbContext.Bookings.OrderBy(b => b.Id).ToListAsync();
+        return await _bookings.Find(_ => true).ToListAsync();
     }
 
     public async Task<ICollection<AirportBooking>> GetAirportBookingsAsync()
     {
         _logger.LogInformation("Fetching all airport bookings.");
-        return await _dbContext.AirportBookings.OrderBy(b => b.Id).ToListAsync();
+        return await _airportBookings.Find(_ => true).ToListAsync();
     }
 
-    public async Task<Booking?> GetBookingByIdAsync(int id)
+    public async Task<Booking?> GetBookingByIdAsync(ObjectId id)
     {
         _logger.LogInformation("Fetching booking with ID {Id}.", id);
-        return await _dbContext.Bookings.FirstOrDefaultAsync(b => b.Id == id);
+        return await _bookings.Find(b => b._id == id).FirstOrDefaultAsync();
     }
 
-    public async Task<AirportBooking?> GetAirportBookingByIdAsync(int id)
+    public async Task<AirportBooking?> GetAirportBookingByIdAsync(ObjectId id)
     {
         _logger.LogInformation("Fetching airport booking with ID {Id}.", id);
-        return await _dbContext.AirportBookings.FirstOrDefaultAsync(b => b.Id == id);
+        return await _airportBookings.Find(ab => ab._id == id).FirstOrDefaultAsync();
     }
 
     public async Task<bool> CreateBookingAsync(Booking booking)
     {
         try
         {
-            await _dbContext.Bookings.AddAsync(booking);
-            return await SaveAsync();
+            await _bookings.InsertOneAsync(booking);
+            return true;
         }
         catch (Exception ex)
         {
@@ -57,8 +59,8 @@ public class BookingService : IBookingService
     {
         try
         {
-            await _dbContext.AirportBookings.AddAsync(booking);
-            return await SaveAsync();
+            await _airportBookings.InsertOneAsync(booking);
+            return true;
         }
         catch (Exception ex)
         {
@@ -71,8 +73,8 @@ public class BookingService : IBookingService
     {
         try
         {
-            _dbContext.Bookings.Update(booking);
-            return await SaveAsync();
+            var result = await _bookings.ReplaceOneAsync(b => b._id == booking._id, booking);
+            return result.ModifiedCount > 0;
         }
         catch (Exception ex)
         {
@@ -85,8 +87,8 @@ public class BookingService : IBookingService
     {
         try
         {
-            _dbContext.AirportBookings.Update(booking);
-            return await SaveAsync();
+            var result = await _airportBookings.ReplaceOneAsync(ab => ab._id == booking._id, booking);
+            return result.ModifiedCount > 0;
         }
         catch (Exception ex)
         {
@@ -95,19 +97,12 @@ public class BookingService : IBookingService
         }
     }
 
-    public async Task<bool> DeleteBookingAsync(int id)
+    public async Task<bool> DeleteBookingAsync(ObjectId id)
     {
         try
         {
-            var booking = await _dbContext.Bookings.FindAsync(id);
-            if (booking == null)
-            {
-                _logger.LogWarning("Booking with ID {Id} not found.", id);
-                return false;
-            }
-
-            _dbContext.Bookings.Remove(booking);
-            return await SaveAsync();
+            var result = await _bookings.DeleteOneAsync(b => b._id == id);
+            return result.DeletedCount > 0;
         }
         catch (Exception ex)
         {
@@ -116,37 +111,16 @@ public class BookingService : IBookingService
         }
     }
 
-    public async Task<bool> DeleteAirportBookingAsync(int id)
+    public async Task<bool> DeleteAirportBookingAsync(ObjectId id)
     {
         try
         {
-            var airportBooking = await _dbContext.AirportBookings.FindAsync(id);
-            if (airportBooking == null)
-            {
-                _logger.LogWarning("Booking with ID {Id} not found.", id);
-                return false;
-            }
-
-            _dbContext.AirportBookings.Remove(airportBooking);
-            return await SaveAsync();
+            var result = await _airportBookings.DeleteOneAsync(ab => ab._id == id);
+            return result.DeletedCount > 0;
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "An error occurred while deleting booking with ID {Id}.", id);
-            return false;
-        }
-    }
-
-    private async Task<bool> SaveAsync()
-    {
-        try
-        {
-            var changes = await _dbContext.SaveChangesAsync();
-            return changes > 0;
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Failed to save changes to the database.");
+            _logger.LogError(ex, "An error occurred while deleting airport booking with ID {Id}.", id);
             return false;
         }
     }

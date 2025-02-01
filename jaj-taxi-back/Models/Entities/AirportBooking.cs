@@ -1,12 +1,13 @@
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.InteropServices.JavaScript;
 using jaj_taxi_back.Enums;
+using MongoDB.Bson;
 
 namespace jaj_taxi_back.Models.Entities;
 
 public class AirportBooking
 {
-    public int Id { get; set; }
+    public ObjectId _id { get; set; }
 
     [Required]
     public string Name { get; set; }

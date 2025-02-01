@@ -31,7 +31,7 @@ public class ContactUsController : ControllerBase
 
         try
         {
-            var query = _mapper.Map<ContactUs>(contactUsDto);
+            var query = _mapper.Map<CustomerQuery>(contactUsDto);
             await _emailService.SendContactUsEmailAsync(query);
             
 

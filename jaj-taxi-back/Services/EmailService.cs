@@ -1,12 +1,8 @@
 using MailKit.Net.Smtp;
 using MimeKit;
-using System;
-using System.Threading.Tasks;
 using jaj_taxi_back.Enums;
 using jaj_taxi_back.Models.Dtos;
 using jaj_taxi_back.Models.Entities;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 
 namespace jaj_taxi_back.Services
 {
@@ -186,12 +182,12 @@ namespace jaj_taxi_back.Services
             }
         }
 
-        public async Task SendContactUsEmailAsync(ContactUs contactUs)
+        public async Task SendContactUsEmailAsync(CustomerQuery customerQuery)
         {
-            var customerEmailBody = GetContactUsEmailBodyForCustomer(contactUs);
-            var businessEmailBody = GetContactUsEmailBodyForBusiness(contactUs);
+            var customerEmailBody = GetContactUsEmailBodyForCustomer(customerQuery);
+            var businessEmailBody = GetContactUsEmailBodyForBusiness(customerQuery);
 
-            await SendEmailsAsync(contactUs.Email, customerEmailBody, businessEmailBody);
+            await SendEmailsAsync(customerQuery.Email, customerEmailBody, businessEmailBody);
         }
 
         // Helper method to create status update email body for customer
@@ -245,26 +241,26 @@ namespace jaj_taxi_back.Services
             </ul>";
 
         // Helper method to create status update email body for customer
-        private string GetContactUsEmailBodyForCustomer(ContactUs contactUs) => $@"
+        private string GetContactUsEmailBodyForCustomer(CustomerQuery customerQuery) => $@"
             <h2>Message Received</h2>
-            <p>Dear {contactUs.Name},</p>
+            <p>Dear {customerQuery.Name},</p>
             <p>We are sending this email to confirm receipt of your query. We will get back to you as soon as possible.</p>
             <p>Here are the details of your query:</p>
             <ul>
-                <li> Name: {contactUs.Name}</li>
-                <li> Email: {contactUs.Email}</li>
-                <li> Message: {contactUs.Message}</li>
+                <li> Name: {customerQuery.Name}</li>
+                <li> Email: {customerQuery.Email}</li>
+                <li> Message: {customerQuery.Message}</li>
             </ul>
             <p>Best regards,<br>Team JAJ Taxi</>";
 
-        private string GetContactUsEmailBodyForBusiness(ContactUs contactUs) => $@"
+        private string GetContactUsEmailBodyForBusiness(CustomerQuery customerQuery) => $@"
             <h2>Customer Query Received:</h2>
-            <p>You have received a new message from {contactUs.Name}</p>
+            <p>You have received a new message from {customerQuery.Name}</p>
             <p>Details:</p>
             <ul>
-                <li> Name: {contactUs.Name}</li>
-                <li> Email: {contactUs.Email}</li>
-                <li> Message: {contactUs.Message}</li>
+                <li> Name: {customerQuery.Name}</li>
+                <li> Email: {customerQuery.Email}</li>
+                <li> Message: {customerQuery.Message}</li>
             </ul>";
     }
 }

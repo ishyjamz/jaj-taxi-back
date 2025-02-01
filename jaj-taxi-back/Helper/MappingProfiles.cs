@@ -35,7 +35,7 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.ReturnTime, opt => opt.MapFrom(src => src.ReturnTime))
             .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status));
 
-        CreateMap<ContactUsDto, ContactUs>()
+        CreateMap<ContactUsDto, CustomerQuery>()
             .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
             .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
             .ForMember(dest => dest.Message, opt => opt.MapFrom(src => src.Message));

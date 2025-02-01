@@ -1,26 +1,35 @@
-using System.Text;
 using jaj_taxi_back;
 using jaj_taxi_back.Services;
-using Microsoft.EntityFrameworkCore;
-using AutoMapper;
-using jaj_taxi_back.Helper;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-
+using Microsoft.Extensions.Options;
+using MongoDB.Driver;
+using MongoDB.Bson;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<TaxiBookingDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("MongoDbSettings"));
+builder.Services.Configure<BusinessEmailSettings>(builder.Configuration.GetSection("BusinessEmail"));
 
+// Register MongoDB client and database
+builder.Services.AddSingleton<IMongoClient>(sp =>
+{
+    var settings = sp.GetRequiredService<IOptions<MongoDbSettings>>().Value;
+    return new MongoClient(settings.ConnectionString);
+});
+
+builder.Services.AddScoped(sp =>
+{
+    var client = sp.GetRequiredService<IMongoClient>();
+    var settings = sp.GetRequiredService<IOptions<MongoDbSettings>>().Value;
+    return client.GetDatabase(settings.DatabaseName);
+});
+
+// Register repositories and services
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddTransient<IEmailService, EmailService>();
 builder.Services.AddTransient<IBookingService, BookingService>();
-builder.Services.Configure<BusinessEmailSettings>(builder.Configuration.GetSection("BusinessEmail"));
 
-
-// Register AutoMapper profile explicitly (if needed)
+// Register AutoMapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 // Add CORS policy to allow requests from the frontend
@@ -28,10 +37,9 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins("https://jajtaxi.co.uk")
-            .WithOrigins("https://www.jajtaxi.co.uk")// Replace with the actual frontend origin
-            .AllowAnyHeader()
-            .AllowAnyMethod();
+        policy.WithOrigins("https://jajtaxi.co.uk", "https://www.jajtaxi.co.uk") // Allow multiple origins
+              .AllowAnyHeader()
+              .AllowAnyMethod();
     });
 });
 
@@ -52,17 +60,26 @@ if (app.Environment.IsDevelopment())
 // Enable CORS middleware
 app.UseCors("AllowFrontend");
 
-// Ensure compatibility for Npgsql timestamp behavior
-AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", false);
-
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-app.UseSwagger();
-app.UseSwaggerUI();
 
 app.UseRouting();
 
 app.MapControllers();
+
+// Test MongoDB connection
+var mongoSettings = app.Services.GetRequiredService<IOptions<MongoDbSettings>>().Value;
+var mongoClient = new MongoClient(mongoSettings.ConnectionString);
+
+try
+{
+    var result = mongoClient.GetDatabase("JajTaxi").RunCommand<BsonDocument>(new BsonDocument("ping", 1));
+    Console.WriteLine("Pinged your deployment. You successfully connected to MongoDB!");
+}
+catch (Exception ex)
+{
+    Console.WriteLine("Failed to connect to MongoDB: " + ex.Message);
+}
 
 app.Run();

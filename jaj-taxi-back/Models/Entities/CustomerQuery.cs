@@ -1,10 +1,11 @@
 using System.ComponentModel.DataAnnotations;
+using MongoDB.Bson;
 
 namespace jaj_taxi_back.Models.Entities;
 
-public class ContactUs
+public class CustomerQuery
 {
-    public int Id { get; set; }
+    public ObjectId _id { get; set; }
     
     [Required]
     [MinLength(3)] // Minimum length of 3 characters

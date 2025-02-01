@@ -1,6 +1,7 @@
 using jaj_taxi_back.Models.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MongoDB.Bson;
 
 namespace jaj_taxi_back.Services
 {
@@ -8,13 +9,13 @@ namespace jaj_taxi_back.Services
     {
         Task<ICollection<Booking>> GetBookingsAsync();
         Task<ICollection<AirportBooking>> GetAirportBookingsAsync();
-        Task<Booking?> GetBookingByIdAsync(int id);
-        Task<AirportBooking?> GetAirportBookingByIdAsync(int id);
+        Task<Booking?> GetBookingByIdAsync(ObjectId id);
+        Task<AirportBooking?> GetAirportBookingByIdAsync(ObjectId id);
         Task<bool> CreateBookingAsync(Booking booking);
         Task<bool> CreateAirportBookingAsync(AirportBooking booking);
         Task<bool> UpdateBookingAsync(Booking booking);
         Task<bool> UpdateAirportBookingAsync(AirportBooking booking);
-        Task<bool> DeleteBookingAsync(int id);
-        Task<bool> DeleteAirportBookingAsync(int id);
+        Task<bool> DeleteBookingAsync(ObjectId id);
+        Task<bool> DeleteAirportBookingAsync(ObjectId id);
     }
 }
