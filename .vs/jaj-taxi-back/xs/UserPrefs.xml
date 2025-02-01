@@ -1,20 +1,20 @@
 ﻿<Properties StartupConfiguration="{9BF31B04-CC82-4855-8007-79F5DFCDA8A7}|https">
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.jaj-taxi-back PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="jaj-taxi-back" expanded="True">
-            <Node name="jaj-taxi-back" expanded="True" selected="True" />
+          <Node name="jaj-taxi-back">
+            <Node name="jaj-taxi-back" selected="True" />
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.jaj-taxi-back PreferredExecutionTarget="/Applications/Google Chrome.app" />
 </Properties>
