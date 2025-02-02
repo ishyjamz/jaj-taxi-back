@@ -39,7 +39,8 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins("https://jajtaxi.co.uk", "https://www.jajtaxi.co.uk") // Allow multiple origins
               .AllowAnyHeader()
-              .AllowAnyMethod();
+              .AllowAnyMethod()
+              .AllowCredentials();
     });
 });
 
@@ -57,6 +58,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseRouting();
+
 // Enable CORS middleware
 app.UseCors("AllowFrontend");
 
@@ -64,7 +67,6 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.UseRouting();
 
 app.MapControllers();
 
