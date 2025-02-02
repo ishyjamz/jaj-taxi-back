@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("jaj-taxi-back")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ff13ea6f1168d59d80d6b92d589667da30710bbc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9df0ff4f03f73275efea235af2d9466cd044179a")]
 [assembly: System.Reflection.AssemblyProductAttribute("jaj-taxi-back")]
 [assembly: System.Reflection.AssemblyTitleAttribute("jaj-taxi-back")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
