@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/jaj-taxi-back.props" />
+</Project>

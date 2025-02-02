@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1706.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jaj-taxi-back", "jaj-taxi-back.csproj", "{B2730ABA-2070-4169-82D1-1CB70CFBF31F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2730ABA-2070-4169-82D1-1CB70CFBF31F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2730ABA-2070-4169-82D1-1CB70CFBF31F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2730ABA-2070-4169-82D1-1CB70CFBF31F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2730ABA-2070-4169-82D1-1CB70CFBF31F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {031074AC-C9F6-4872-A7F2-C4FD5A5C5072}
+	EndGlobalSection
+EndGlobal

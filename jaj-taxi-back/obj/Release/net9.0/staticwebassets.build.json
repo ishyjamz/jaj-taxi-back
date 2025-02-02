@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "/dWvXZ1Ohvkpd2xZMSqyeUTZxGALggPWixAC16y6BPg=",
+  "Source": "jaj-taxi-back",
+  "BasePath": "_content/jaj-taxi-back",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
