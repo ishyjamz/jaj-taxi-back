@@ -33,5 +33,44 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
         <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.3.1" />
     </ItemGroup>
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="publish\publish\publish\publish\publish\publish\publish\web.config" />
+      <_ContentIncludedByDefault Remove="publish\publish\publish\publish\publish\publish\web.config" />
+      <_ContentIncludedByDefault Remove="publish\publish\publish\publish\publish\web.config" />
+      <_ContentIncludedByDefault Remove="publish\publish\publish\publish\web.config" />
+      <_ContentIncludedByDefault Remove="publish\publish\publish\web.config" />
+      <_ContentIncludedByDefault Remove="publish\publish\web.config" />
+      <_ContentIncludedByDefault Remove="publish\web.config" />
+      <_ContentIncludedByDefault Remove="publish\appsettings.Development.json" />
+      <_ContentIncludedByDefault Remove="publish\appsettings.json" />
+      <_ContentIncludedByDefault Remove="publish\jaj-taxi-back.deps.json" />
+      <_ContentIncludedByDefault Remove="publish\jaj-taxi-back.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="publish\jaj-taxi-back.staticwebassets.endpoints.json" />
+      <_ContentIncludedByDefault Remove="publish\publish\appsettings.Development.json" />
+      <_ContentIncludedByDefault Remove="publish\publish\appsettings.json" />
+      <_ContentIncludedByDefault Remove="publish\publish\jaj-taxi-back.deps.json" />
+      <_ContentIncludedByDefault Remove="publish\publish\jaj-taxi-back.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="publish\publish\jaj-taxi-back.staticwebassets.endpoints.json" />
+      <_ContentIncludedByDefault Remove="publish\publish\publish\appsettings.Development.json" />
+      <_ContentIncludedByDefault Remove="publish\publish\publish\appsettings.json" />
+      <_ContentIncludedByDefault Remove="publish\publish\publish\jaj-taxi-back.deps.json" />
+      <_ContentIncludedByDefault Remove="publish\publish\publish\jaj-taxi-back.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="publish\publish\publish\publish\appsettings.Development.json" />
+      <_ContentIncludedByDefault Remove="publish\publish\publish\publish\appsettings.json" />
+      <_ContentIncludedByDefault Remove="publish\publish\publish\publish\jaj-taxi-back.deps.json" />
+      <_ContentIncludedByDefault Remove="publish\publish\publish\publish\jaj-taxi-back.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="publish\publish\publish\publish\publish\appsettings.Development.json" />
+      <_ContentIncludedByDefault Remove="publish\publish\publish\publish\publish\appsettings.json" />
+      <_ContentIncludedByDefault Remove="publish\publish\publish\publish\publish\jaj-taxi-back.deps.json" />
+      <_ContentIncludedByDefault Remove="publish\publish\publish\publish\publish\jaj-taxi-back.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="publish\publish\publish\publish\publish\publish\appsettings.Development.json" />
+      <_ContentIncludedByDefault Remove="publish\publish\publish\publish\publish\publish\appsettings.json" />
+      <_ContentIncludedByDefault Remove="publish\publish\publish\publish\publish\publish\jaj-taxi-back.deps.json" />
+      <_ContentIncludedByDefault Remove="publish\publish\publish\publish\publish\publish\jaj-taxi-back.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="publish\publish\publish\publish\publish\publish\publish\appsettings.Development.json" />
+      <_ContentIncludedByDefault Remove="publish\publish\publish\publish\publish\publish\publish\appsettings.json" />
+      <_ContentIncludedByDefault Remove="publish\publish\publish\publish\publish\publish\publish\jaj-taxi-back.deps.json" />
+      <_ContentIncludedByDefault Remove="publish\publish\publish\publish\publish\publish\publish\jaj-taxi-back.runtimeconfig.json" />
+    </ItemGroup>
 
 </Project>
