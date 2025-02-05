@@ -29,16 +29,16 @@ public class BookingService : IBookingService
         return await _airportBookings.Find(_ => true).ToListAsync();
     }
 
-    public async Task<Booking?> GetBookingByIdAsync(ObjectId id)
+    public async Task<Booking?> GetBookingByIdAsync(string id)
     {
         _logger.LogInformation("Fetching booking with ID {Id}.", id);
-        return await _bookings.Find(b => b._id == id).FirstOrDefaultAsync();
+        return await _bookings.Find(b => b.Id == id).FirstOrDefaultAsync();
     }
 
-    public async Task<AirportBooking?> GetAirportBookingByIdAsync(ObjectId id)
+    public async Task<AirportBooking?> GetAirportBookingByIdAsync(string id)
     {
         _logger.LogInformation("Fetching airport booking with ID {Id}.", id);
-        return await _airportBookings.Find(ab => ab._id == id).FirstOrDefaultAsync();
+        return await _airportBookings.Find(ab => ab.Id == id).FirstOrDefaultAsync();
     }
 
     public async Task<bool> CreateBookingAsync(Booking booking)
@@ -73,7 +73,7 @@ public class BookingService : IBookingService
     {
         try
         {
-            var result = await _bookings.ReplaceOneAsync(b => b._id == booking._id, booking);
+            var result = await _bookings.ReplaceOneAsync(b => b.Id == booking.Id, booking);
             return result.ModifiedCount > 0;
         }
         catch (Exception ex)
@@ -87,7 +87,7 @@ public class BookingService : IBookingService
     {
         try
         {
-            var result = await _airportBookings.ReplaceOneAsync(ab => ab._id == booking._id, booking);
+            var result = await _airportBookings.ReplaceOneAsync(ab => ab.Id == booking.Id, booking);
             return result.ModifiedCount > 0;
         }
         catch (Exception ex)
@@ -97,11 +97,11 @@ public class BookingService : IBookingService
         }
     }
 
-    public async Task<bool> DeleteBookingAsync(ObjectId id)
+    public async Task<bool> DeleteBookingAsync(string id)
     {
         try
         {
-            var result = await _bookings.DeleteOneAsync(b => b._id == id);
+            var result = await _bookings.DeleteOneAsync(b => b.Id == id);
             return result.DeletedCount > 0;
         }
         catch (Exception ex)
@@ -111,11 +111,11 @@ public class BookingService : IBookingService
         }
     }
 
-    public async Task<bool> DeleteAirportBookingAsync(ObjectId id)
+    public async Task<bool> DeleteAirportBookingAsync(string id)
     {
         try
         {
-            var result = await _airportBookings.DeleteOneAsync(ab => ab._id == id);
+            var result = await _airportBookings.DeleteOneAsync(ab => ab.Id == id);
             return result.DeletedCount > 0;
         }
         catch (Exception ex)

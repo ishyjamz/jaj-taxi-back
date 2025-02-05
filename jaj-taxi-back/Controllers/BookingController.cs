@@ -153,7 +153,7 @@ namespace jaj_taxi_back.Controllers
         }
 
         [HttpGet("get/{id}")]
-        public async Task<IActionResult> GetBooking(ObjectId id)
+        public async Task<IActionResult> GetBooking(string id)
         {
             try
             {
@@ -173,7 +173,7 @@ namespace jaj_taxi_back.Controllers
         }
 
         [HttpGet("getAirport/{id}")]
-        public async Task<IActionResult> GetAirportBooking(ObjectId id)
+        public async Task<IActionResult> GetAirportBooking(string id)
         {
             try
             {
@@ -193,7 +193,7 @@ namespace jaj_taxi_back.Controllers
         }
 
         [HttpPut("update/{id}")]
-        public async Task<IActionResult> UpdateBooking(ObjectId id, [FromBody] BookingDto bookingDto)
+        public async Task<IActionResult> UpdateBooking(string id, [FromBody] BookingDto bookingDto)
         {
             if (!ModelState.IsValid)
             {
@@ -206,7 +206,7 @@ namespace jaj_taxi_back.Controllers
                 bookingDto.Date = EnsureUtc(bookingDto.Date);
 
                 var booking = _mapper.Map<Booking>(bookingDto);
-                booking._id = id; // Ensure the ID is set for updating
+                booking.Id = id; // Ensure the ID is set for updating
                 var success = await _bookingService.UpdateBookingAsync(booking);
 
                 if (!success)
@@ -228,7 +228,7 @@ namespace jaj_taxi_back.Controllers
         }
 
         [HttpPut("updateAirport/{id}")]
-        public async Task<IActionResult> UpdateAirportBooking(ObjectId id, [FromBody] AirportBookingDto bookingDto)
+        public async Task<IActionResult> UpdateAirportBooking(string id, [FromBody] AirportBookingDto bookingDto)
         {
             if (!ModelState.IsValid)
             {
@@ -244,7 +244,7 @@ namespace jaj_taxi_back.Controllers
                     bookingDto.ReturnDate = EnsureUtc(bookingDto.ReturnDate.Value);
 
                 var booking = _mapper.Map<AirportBooking>(bookingDto);
-                booking._id = id; // Ensure the ID is set for updating
+                booking.Id = id; // Ensure the ID is set for updating
                 var success = await _bookingService.UpdateAirportBookingAsync(booking);
 
                 if (!success)
@@ -267,7 +267,7 @@ namespace jaj_taxi_back.Controllers
         }
 
         [HttpDelete("delete/{id}")]
-        public async Task<IActionResult> DeleteBooking(ObjectId id)
+        public async Task<IActionResult> DeleteBooking(string id)
         {
             try
             {
@@ -291,7 +291,7 @@ namespace jaj_taxi_back.Controllers
         }
 
         [HttpDelete("deleteAirport/{id}")]
-        public async Task<IActionResult> DeleteAirportBooking(ObjectId id)
+        public async Task<IActionResult> DeleteAirportBooking(string id)
         {
             try
             {

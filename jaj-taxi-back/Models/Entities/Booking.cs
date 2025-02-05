@@ -1,12 +1,15 @@
 using System.ComponentModel.DataAnnotations;
 using jaj_taxi_back.Enums;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace jaj_taxi_back.Models.Entities;
 
 public class Booking
 {
-    public ObjectId _id { get; set; }
+    [BsonId]
+    [BsonRepresentation(BsonType.String)]
+    public string Id { get; set; }
 
     [Required(ErrorMessage = "Date is required.")]
     [DataType(DataType.DateTime)]
