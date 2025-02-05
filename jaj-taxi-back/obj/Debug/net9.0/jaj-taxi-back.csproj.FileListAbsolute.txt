@@ -147,3 +147,15 @@
 /Users/ishtiak/Documents/jaj-taxi-back/jaj-taxi-back/bin/Debug/net9.0/tr/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 /Users/ishtiak/Documents/jaj-taxi-back/jaj-taxi-back/bin/Debug/net9.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 /Users/ishtiak/Documents/jaj-taxi-back/jaj-taxi-back/bin/Debug/net9.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+/Users/ishtiak/Documents/jaj-taxi-back/jaj-taxi-back/bin/Debug/net9.0/publish/publish/web.config
+/Users/ishtiak/Documents/jaj-taxi-back/jaj-taxi-back/bin/Debug/net9.0/publish/web.config
+/Users/ishtiak/Documents/jaj-taxi-back/jaj-taxi-back/bin/Debug/net9.0/publish/appsettings.Development.json
+/Users/ishtiak/Documents/jaj-taxi-back/jaj-taxi-back/bin/Debug/net9.0/publish/appsettings.json
+/Users/ishtiak/Documents/jaj-taxi-back/jaj-taxi-back/bin/Debug/net9.0/publish/jaj-taxi-back.deps.json
+/Users/ishtiak/Documents/jaj-taxi-back/jaj-taxi-back/bin/Debug/net9.0/publish/jaj-taxi-back.runtimeconfig.json
+/Users/ishtiak/Documents/jaj-taxi-back/jaj-taxi-back/bin/Debug/net9.0/publish/jaj-taxi-back.staticwebassets.endpoints.json
+/Users/ishtiak/Documents/jaj-taxi-back/jaj-taxi-back/bin/Debug/net9.0/publish/publish/appsettings.Development.json
+/Users/ishtiak/Documents/jaj-taxi-back/jaj-taxi-back/bin/Debug/net9.0/publish/publish/appsettings.json
+/Users/ishtiak/Documents/jaj-taxi-back/jaj-taxi-back/bin/Debug/net9.0/publish/publish/jaj-taxi-back.deps.json
+/Users/ishtiak/Documents/jaj-taxi-back/jaj-taxi-back/bin/Debug/net9.0/publish/publish/jaj-taxi-back.runtimeconfig.json
+/Users/ishtiak/Documents/jaj-taxi-back/jaj-taxi-back/bin/Debug/net9.0/publish/publish/jaj-taxi-back.staticwebassets.endpoints.json

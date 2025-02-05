@@ -20,7 +20,7 @@ public class ContactUsController : ControllerBase
         _logger = logger;
         _mapper = mapper;
     }
-    [HttpPost]
+    [HttpPost("create")]
     public async Task<IActionResult> SendContactUsEmail([FromBody] ContactUsDto contactUsDto)
     {
         if (!ModelState.IsValid)
