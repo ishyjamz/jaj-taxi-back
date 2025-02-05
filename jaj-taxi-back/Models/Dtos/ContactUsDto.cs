@@ -1,10 +1,14 @@
 using System.ComponentModel.DataAnnotations;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace jaj_taxi_back.Models.Dtos;
 
 public class ContactUsDto
 {
-    public int Id { get; set; }
+    [BsonId]
+    [BsonRepresentation(BsonType.String)]
+    public string Id { get; set; }
     
     [Required]
     [MinLength(3)] // Minimum length of 3 characters

@@ -1,11 +1,15 @@
 using System.ComponentModel.DataAnnotations;
 using jaj_taxi_back.Enums;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace jaj_taxi_back.Models.Dtos;
 
 public class AirportBookingDto
 {
-    public int Id { get; set; }
+    [BsonId]
+    [BsonRepresentation(BsonType.String)]
+    public string Id { get; set; }
 
     [Required(ErrorMessage = "Name is required.")]
     public string? Name { get; set; }
