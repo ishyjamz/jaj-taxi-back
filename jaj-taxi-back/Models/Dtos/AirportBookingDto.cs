@@ -7,10 +7,6 @@ namespace jaj_taxi_back.Models.Dtos;
 
 public class AirportBookingDto
 {
-    [BsonId]
-    [BsonRepresentation(BsonType.String)]
-    public string Id { get; set; }
-
     [Required(ErrorMessage = "Name is required.")]
     public string? Name { get; set; }
 

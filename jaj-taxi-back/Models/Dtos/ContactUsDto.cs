@@ -6,10 +6,6 @@ namespace jaj_taxi_back.Models.Dtos;
 
 public class ContactUsDto
 {
-    [BsonId]
-    [BsonRepresentation(BsonType.String)]
-    public string Id { get; set; }
-    
     [Required]
     [MinLength(3)] // Minimum length of 3 characters
     [MaxLength(50)] // Maximum length of 50 characters

@@ -51,8 +51,8 @@ namespace jaj_taxi_back.Controllers
             try
             {
                 bookingDto.Date = EnsureUtc(bookingDto.Date);
-
                 var booking = _mapper.Map<Booking>(bookingDto);
+                booking.Id = ObjectId.GenerateNewId().ToString(); // Ensure MongoDB has a valid Id
                 var success = await _bookingService.CreateBookingAsync(booking);
 
                 if (!success)
@@ -96,6 +96,7 @@ namespace jaj_taxi_back.Controllers
                 }
 
                 var airportBooking = _mapper.Map<AirportBooking>(airportBookingDto);
+                airportBooking.Id = ObjectId.GenerateNewId().ToString(); // Ensure MongoDB has a valid Id
                 var success = await _bookingService.CreateAirportBookingAsync(airportBooking);
 
                 if (!success)

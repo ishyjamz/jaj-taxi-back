@@ -7,10 +7,6 @@ namespace jaj_taxi_back.Models.Dtos;
 
 public class BookingDto
 {
-    [BsonId]
-    [BsonRepresentation(BsonType.String)]
-    public string Id { get; set; }
-
     [Required(ErrorMessage = "Date is required.")]
     [DataType(DataType.DateTime)]
     public DateTime Date { get; set; }
