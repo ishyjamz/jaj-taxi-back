@@ -52,16 +52,22 @@ public class BookingService : IBookingService
     }
 
     public async Task<bool> CreateBookingAsync(Booking booking)
-    {
+    { 
         try
         {
+            if (string.IsNullOrEmpty(booking.Id))
+            {
+                booking.Id = ObjectId.GenerateNewId().ToString(); // Ensure MongoDB has a valid Id
+            }
+
             await _bookings.InsertOneAsync(booking);
-            return true;
+            return true; // Return the generated Id
         }
+        
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Failed to create booking.");
-            return false;
+            _logger.LogError(ex, "Failed to create airport booking.");
+            return false; // Indicate failure
         }
     }
 
